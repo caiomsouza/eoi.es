@@ -430,7 +430,7 @@
     <created_date>2017&#x2f;01&#x2f;15 16&#x3a;44&#x3a;06.522</created_date>
     <modified_user>-</modified_user>
     <modified_date>2017&#x2f;01&#x2f;15 16&#x3a;44&#x3a;06.522</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -461,18 +461,8 @@
   </connection>
   <order>
     <hop>
-      <from>Read Sales</from>
-      <to>DIMLKP - Client</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>DIMLKP - Client</from>
       <to>DIMLKP - Product</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DIMLKP - Product</from>
-      <to>Organize Rows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -480,7 +470,230 @@
       <to>TOU - Fact_Sales</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>DIMLKP - Product</from>
+      <to>DB Lookup - Sales Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DB Lookup - Sales Date</from>
+      <to>Organize Rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Read Sales</from>
+      <to>DIMLKP - Client</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>DB Lookup - Sales Date</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>store_dw</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dim_date</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>SalesDate</name>
+        <field>date</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>date_key</name>
+        <rename>date_key</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>DIMLKP - Client</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <schema/>
+      <table>dim_client</table>
+      <connection>store_dw</connection>
+      <commit>100</commit>
+      <update>N</update>
+      <fields>
+        <key>
+          <name>ClientID</name>
+          <lookup>ClientID</lookup>
+        </key>
+        <date>
+          <name/>
+          <from>date_from</from>
+          <to>date_to</to>
+        </date>
+        <field>
+          <name>clientsk</name>
+          <lookup>clientsk</lookup>
+          <update>Integer</update>
+        </field>
+        <return>
+          <name>clientsk</name>
+          <rename/>
+          <creation_method>tablemax</creation_method>
+          <use_autoinc>N</use_autoinc>
+          <version>version</version>
+        </return>
+      </fields>
+      <sequence/>
+      <min_year>1900</min_year>
+      <max_year>2199</max_year>
+      <cache_size>5000</cache_size>
+      <preload_cache>N</preload_cache>
+      <use_start_date_alternative>N</use_start_date_alternative>
+      <start_date_alternative>none</start_date_alternative>
+      <start_date_field_name/>
+      <useBatch>N</useBatch>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>DIMLKP - Product</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <schema/>
+      <table>dim_product</table>
+      <connection>store_dw</connection>
+      <commit>100</commit>
+      <update>N</update>
+      <fields>
+        <key>
+          <name>ProductID</name>
+          <lookup>ProductID</lookup>
+        </key>
+        <date>
+          <name/>
+          <from>date_from</from>
+          <to>date_to</to>
+        </date>
+        <field>
+          <name>productsk</name>
+          <lookup>productsk</lookup>
+          <update>Integer</update>
+        </field>
+        <return>
+          <name>productsk</name>
+          <rename/>
+          <creation_method>tablemax</creation_method>
+          <use_autoinc>N</use_autoinc>
+          <version>version</version>
+        </return>
+      </fields>
+      <sequence/>
+      <min_year>1900</min_year>
+      <max_year>2199</max_year>
+      <cache_size>5000</cache_size>
+      <preload_cache>N</preload_cache>
+      <use_start_date_alternative>N</use_start_date_alternative>
+      <start_date_alternative>none</start_date_alternative>
+      <start_date_field_name/>
+      <useBatch>N</useBatch>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Organize Rows</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>SalesTotalPrice</name>
+        <rename/>
+      </field>      <field>        <name>SalesQuantity</name>
+        <rename/>
+      </field>      <field>        <name>clientsk</name>
+        <rename/>
+      </field>      <field>        <name>productsk</name>
+        <rename/>
+      </field>      <field>        <name>date_key</name>
+        <rename>salesdatesk</rename>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step>
     <name>Read Sales</name>
     <type>ExcelInput</type>
@@ -553,7 +766,7 @@
       </field>
       <field>
         <name>SalesDate</name>
-        <type>Integer</type>
+        <type>Timestamp</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -633,166 +846,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>DIMLKP - Client</name>
-    <type>DimensionLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <schema/>
-      <table>dim_client</table>
-      <connection>store_dw</connection>
-      <commit>100</commit>
-      <update>N</update>
-      <fields>
-        <key>
-          <name>ClientID</name>
-          <lookup>ClientID</lookup>
-        </key>
-        <date>
-          <name/>
-          <from>date_from</from>
-          <to>date_to</to>
-        </date>
-        <field>
-          <name>clientsk</name>
-          <lookup>clientsk</lookup>
-          <update>Integer</update>
-        </field>
-        <return>
-          <name>clientsk</name>
-          <rename/>
-          <creation_method>tablemax</creation_method>
-          <use_autoinc>N</use_autoinc>
-          <version>version</version>
-        </return>
-      </fields>
-      <sequence/>
-      <min_year>1900</min_year>
-      <max_year>2199</max_year>
-      <cache_size>5000</cache_size>
-      <preload_cache>N</preload_cache>
-      <use_start_date_alternative>N</use_start_date_alternative>
-      <start_date_alternative>none</start_date_alternative>
-      <start_date_field_name/>
-      <useBatch>N</useBatch>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>DIMLKP - Product</name>
-    <type>DimensionLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <schema/>
-      <table>dim_product</table>
-      <connection>store_dw</connection>
-      <commit>100</commit>
-      <update>N</update>
-      <fields>
-        <key>
-          <name>ProductID</name>
-          <lookup>ProductID</lookup>
-        </key>
-        <date>
-          <name/>
-          <from>date_from</from>
-          <to>date_to</to>
-        </date>
-        <field>
-          <name>productsk</name>
-          <lookup>productsk</lookup>
-          <update>Integer</update>
-        </field>
-        <return>
-          <name>productsk</name>
-          <rename/>
-          <creation_method>tablemax</creation_method>
-          <use_autoinc>N</use_autoinc>
-          <version>version</version>
-        </return>
-      </fields>
-      <sequence/>
-      <min_year>1900</min_year>
-      <max_year>2199</max_year>
-      <cache_size>5000</cache_size>
-      <preload_cache>N</preload_cache>
-      <use_start_date_alternative>N</use_start_date_alternative>
-      <start_date_alternative>none</start_date_alternative>
-      <start_date_field_name/>
-      <useBatch>N</useBatch>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Organize Rows</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>SalesTotalPrice</name>
-        <rename/>
-      </field>      <field>        <name>SalesQuantity</name>
-        <rename/>
-      </field>      <field>        <name>clientsk</name>
-        <rename/>
-      </field>      <field>        <name>productsk</name>
-        <rename/>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>304</yloc>
+      <xloc>96</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -812,7 +867,7 @@
     <schema/>
     <table>fct_sales</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>N</specify_fields>
@@ -835,8 +890,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>480</yloc>
+      <xloc>128</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
