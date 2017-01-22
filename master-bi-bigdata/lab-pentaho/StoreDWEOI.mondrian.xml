@@ -1,0 +1,46 @@
+<Schema name="StoreDWEOI">
+  <Dimension visible="true" highCardinality="false" name="Client">
+    <Hierarchy name="Name" visible="true" hasAll="true" primaryKey="clientsk">
+      <Table name="dim_client" schema="public">
+      </Table>
+      <Level name="Name" visible="true" column="clientname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Sales Date">
+    <Hierarchy name="Year" visible="true" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public">
+      </Table>
+      <Level name="Year" visible="true" column="year4" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+      <Level name="Month" visible="true" column="month_name" ordinalColumn="month_number" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+      <Level name="Day in Month" visible="true" column="day_in_month" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension visible="true" highCardinality="false" name="Product">
+    <Hierarchy name="Product name" visible="true" hasAll="true" primaryKey="productsk">
+      <Table name="dim_product" schema="public">
+      </Table>
+      <Level name="Product name" visible="true" column="product_name" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="StoreDWEOI" visible="true" cache="true" enabled="true">
+    <Table name="fct_sales" schema="public">
+    </Table>
+    <DimensionUsage source="Client" name="Client" visible="true" foreignKey="clientsk" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Sales Date" name="Sales Date" visible="true" foreignKey="salesdatesk" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" name="Product" visible="true" foreignKey="productsk" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="Sales Quantity" column="salesquantity" datatype="Numeric" aggregator="sum">
+    </Measure>
+    <Measure name="Total Price" column="salestotalprice" datatype="Numeric" aggregator="sum">
+    </Measure>
+    <CalculatedMember name="My Calculated Member" formula="[Measures].[Sales Quantity]*10" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>
