@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>t_load_fact_table_sales</name>
+    <name>t_connect_steel_wheels</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,23 +427,23 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/01/15 16:44:06.522</created_date>
+    <created_date>2017/06/11 20:44:32.800</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017/01/15 16:44:06.522</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2017/06/11 20:44:32.800</modified_date>
+    <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>store_dw</name>
+    <name>SampleData</name>
     <server>localhost</server>
-    <type>POSTGRESQL</type>
+    <type>HYPERSONIC</type>
     <access>Native</access>
-    <database>store_dw</database>
-    <port>5432</port>
-    <username>etl_user</username>
-    <password>Encrypted 2be98afc86aa7f2e4ae0da24fcb81aac8</password>
+    <database>SampleData</database>
+    <port>9001</port>
+    <username>pentaho_user</username>
+    <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>9001</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -488,29 +488,14 @@
   </connection>
   <order>
     <hop>
-      <from>DIMLKP - Client</from>
-      <to>DIMLKP - Product</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DIMLKP - Product</from>
-      <to>DB Lookup - Sales Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Read Sales</from>
-      <to>DIMLKP - Client</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DB Lookup - Sales Date</from>
-      <to>TOU - Fact_Sales</to>
+      <from>Read Data from SampleData</from>
+      <to>Dummy (do nothing)</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>DB Lookup - Sales Date</name>
-    <type>DBLookup</type>
+    <name>Read Data from SampleData</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -519,308 +504,31 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>store_dw</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema />
-      <table>dim_date</table>
-      <orderby />
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>SalesDate</name>
-        <field>date</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>date_key</name>
-        <rename>date_key</rename>
-        <default>0</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DIMLKP - Client</name>
-    <type>DimensionLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <schema />
-    <table>dim_client</table>
-    <connection>store_dw</connection>
-    <commit>100</commit>
-    <update>N</update>
-    <fields>
-      <key>
-        <name>ClientID</name>
-        <lookup>ClientID</lookup>
-      </key>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <field>
-        <name>clientsk</name>
-        <lookup>clientsk</lookup>
-        <update>None</update>
-      </field>
-      <return>
-        <name>clientsk</name>
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DIMLKP - Product</name>
-    <type>DimensionLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <schema />
-    <table>dim_product</table>
-    <connection>store_dw</connection>
-    <commit>100</commit>
-    <update>N</update>
-    <fields>
-      <key>
-        <name>ProductID</name>
-        <lookup>ProductID</lookup>
-      </key>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <field>
-        <name>productsk</name>
-        <lookup>productsk</lookup>
-        <update>None</update>
-      </field>
-      <return>
-        <name>productsk</name>
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Read Sales</name>
-    <type>ExcelInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield>full_filename</filefield>
-    <sheetfield>sheetname</sheetfield>
-    <sheetrownumfield>sheet_row</sheetrownumfield>
-    <rownumfield>row_nr_written</rownumfield>
-    <sheetfield>sheetname</sheetfield>
-    <filefield>full_filename</filefield>
+    <connection>SampleData</connection>
+    <sql>SELECT
+  ORDERNUMBER
+, PRODUCTCODE
+, QUANTITYORDERED
+, PRICEEACH
+, ORDERLINENUMBER
+, TOTALPRICE
+, ORDERDATE
+, REQUIREDDATE
+, SHIPPEDDATE
+, STATUS
+, COMMENTS
+, CUSTOMERNUMBER
+, TIME_ID
+, QTR_ID
+, MONTH_ID
+, YEAR_ID
+FROM ORDERFACT
+</sql>
     <limit>0</limit>
-    <encoding />
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field />
-    <accept_stepname />
-    <file>
-      <name>${Internal.Job.Filename.Directory}/../sales-db.xls</name>
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>ProductID</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-      <field>
-        <name>StoreID</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-      <field>
-        <name>SalesRepID</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-      <field>
-        <name>SalesDate</name>
-        <type>Timestamp</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-      <field>
-        <name>ClientID</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-      <field>
-        <name>SalesTotalPrice</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-      <field>
-        <name>SalesQuantity</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>SalesHistory</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-      </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>Y</error_ignored>
-    <error_line_skipped>Y</error_line_skipped>
-    <bad_line_files_destination_directory>/Users/caiomsouza/Desktop/lab-pentaho</bad_line_files_destination_directory>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory>/Users/caiomsouza/Desktop/lab-pentaho</error_line_files_destination_directory>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory>/Users/caiomsouza/Desktop/lab-pentaho</line_number_files_destination_directory>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName>short_filename</shortFileFieldName>
-    <pathFieldName>path</pathFieldName>
-    <hiddenFieldName />
-    <lastModificationTimeFieldName />
-    <uriNameFieldName />
-    <rootUriNameFieldName />
-    <extensionFieldName>extension</extensionFieldName>
-    <sizeFieldName>size</sizeFieldName>
-    <spreadsheet_type>JXL</spreadsheet_type>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -829,14 +537,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>80</yloc>
+      <xloc>144</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>TOU - Fact_Sales</name>
-    <type>TableOutput</type>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -845,45 +553,6 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>store_dw</connection>
-    <schema />
-    <table>fct_sales</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>salestotalprice</column_name>
-        <stream_name>SalesTotalPrice</stream_name>
-      </field>
-      <field>
-        <column_name>salesquantity</column_name>
-        <stream_name>SalesQuantity</stream_name>
-      </field>
-      <field>
-        <column_name>clientsk</column_name>
-        <stream_name>clientsk</stream_name>
-      </field>
-      <field>
-        <column_name>productsk</column_name>
-        <stream_name>productsk</stream_name>
-      </field>
-      <field>
-        <column_name>salesdatesk</column_name>
-        <stream_name>date_key</stream_name>
-      </field>
-    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -892,8 +561,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>240</yloc>
+      <xloc>496</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -902,4 +571,13 @@
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes>
+    <group>
+      <name>explorerState</name>
+      <attribute>
+        <key>Read Data from SampleData</key>
+        <value />
+      </attribute>
+    </group>
+  </attributes>
 </transformation>
