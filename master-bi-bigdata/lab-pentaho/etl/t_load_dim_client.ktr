@@ -473,7 +473,7 @@ CREATE INDEX idx_dim_client_tk ON dim_client(ClientSK)
   </notepads>
   <connection>
     <name>store_dw</name>
-    <server>localhost</server>
+    <server>${hostname}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>store_dw</database>

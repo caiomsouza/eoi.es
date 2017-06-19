@@ -409,8 +409,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1008</xloc>
-      <yloc>320</yloc>
+      <xloc>1040</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>t_init_db.ktr</name>
@@ -445,7 +445,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
+      <xloc>672</xloc>
       <yloc>64</yloc>
     </entry>
     <entry>
@@ -481,8 +481,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>288</yloc>
+      <xloc>672</xloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
       <name>Success</name>
@@ -491,8 +491,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>640</xloc>
-      <yloc>496</yloc>
+      <xloc>1040</xloc>
+      <yloc>368</yloc>
     </entry>
     <entry>
       <name>t_get_db_project_config.ktr</name>
@@ -542,7 +542,7 @@
       <to>t_dim_date_en.ktr</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -551,7 +551,7 @@
       <to>j_load_data_mart_sales.kjb</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -560,7 +560,7 @@
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -584,6 +584,32 @@
     </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Before you run:
+
+Define the parameters:
+- project_path
+
+Edit the file db.properties inside the project folder</note>
+      <xloc>64</xloc>
+      <yloc>208</yloc>
+      <width>343</width>
+      <heigth>130</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <attributes>
     <group>
