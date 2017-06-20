@@ -484,11 +484,13 @@
     </notepad>
     <notepad>
       <note>Learn more:
-http://rpbouman.blogspot.com.es/2011/05/managing-kettle-job-configuration.html</note>
-      <xloc>848</xloc>
-      <yloc>16</yloc>
-      <width>565</width>
-      <heigth>50</heigth>
+http://rpbouman.blogspot.com.es/2011/05/managing-kettle-job-configuration.html
+
+http://wiki.pentaho.com/display/EAI/Expose+key-value+pairs+from+a+.properties+file+as+variables</note>
+      <xloc>112</xloc>
+      <yloc>560</yloc>
+      <width>683</width>
+      <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
