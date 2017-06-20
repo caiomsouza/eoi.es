@@ -471,13 +471,13 @@ CREATE INDEX idx_dim_product_tk ON dim_product(ProductSK)
   </notepads>
   <connection>
     <name>store_dw</name>
-    <server>localhost</server>
+    <server>${hostname}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>store_dw</database>
-    <port>5432</port>
-    <username>etl_user</username>
-    <password>Encrypted 2be98afc86aa7f2e4ae0da24fcb81aac8</password>
+    <database>${dbname}</database>
+    <port>${portnumber}</port>
+    <username>${user}</username>
+    <password>${password}</password>
     <servername />
     <data_tablespace />
     <index_tablespace />
@@ -496,7 +496,7 @@ CREATE INDEX idx_dim_product_tk ON dim_product(ProductSK)
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
+        <attribute>${portnumber}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>

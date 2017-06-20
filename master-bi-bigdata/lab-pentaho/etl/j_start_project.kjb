@@ -590,11 +590,18 @@
 Define the parameters:
 - project_path
 
-Edit the file db.properties inside the project folder</note>
+Edit the file db.properties inside the project folder
+
+Variables:
+${hostname}
+${dbname}
+${portnumber}
+${user}
+${password}</note>
       <xloc>64</xloc>
       <yloc>208</yloc>
       <width>343</width>
-      <heigth>130</heigth>
+      <heigth>270</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
