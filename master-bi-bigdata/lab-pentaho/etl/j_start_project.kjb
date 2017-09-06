@@ -526,7 +526,7 @@
         <parameter>
           <name>project_path</name>
           <stream_name />
-          <value>C:\Users\cmoreno\Documents\GitHub\eoi.es\master-bi-bigdata\lab-pentaho\etl</value>
+          <value />
         </parameter>
       </parameters>
       <parallel>N</parallel>
@@ -599,11 +599,32 @@ ${portnumber}
 ${user}
 ${password}</note>
       <xloc>64</xloc>
-      <yloc>208</yloc>
+      <yloc>160</yloc>
       <width>343</width>
       <heigth>270</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>/Users/caiomsouza/git/github.com/eoi.es/master-bi-bigdata/lab-pentaho/etl</note>
+      <xloc>480</xloc>
+      <yloc>352</yloc>
+      <width>472</width>
+      <heigth>26</heigth>
+      <fontname />
+      <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
