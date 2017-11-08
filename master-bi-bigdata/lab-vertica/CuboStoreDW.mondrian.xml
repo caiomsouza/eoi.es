@@ -1,0 +1,149 @@
+<Schema name="CuboStoreDW">
+  <Dimension name="Dim client">
+    <Hierarchy name="Clientname" hasAll="true" primaryKey="clientsk">
+      <Table name="dim_client" schema="public"/>
+      <Level name="Clientname" uniqueMembers="false" column="clientname" type="String">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension name="Dim date">
+    <Hierarchy name="Date" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Date" uniqueMembers="false" column="date" type="Date">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Date full" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Date full" uniqueMembers="false" column="date_full" type="String">
+        <Annotations>
+          <Annotation name="Data.Role">Geography</Annotation>
+          <Annotation name="Geo.Role">location</Annotation>
+        </Annotations>
+        <Property name="latitude" column="date_key" type="Numeric" description="LC_Dim_date_date_key_OLAP_2"/>
+        <Property name="longitude" column="date_long" type="String" description="LC_Dim_date_date_long_OLAP"/>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Date key" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Date key" uniqueMembers="false" column="date_key" type="Numeric">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Date medium" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Date medium" uniqueMembers="false" column="date_medium" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Date short" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Date short" uniqueMembers="false" column="date_short" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Day abbreviation" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Day abbreviation" uniqueMembers="false" column="day_abbreviation" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Day in month" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Day in month" uniqueMembers="false" column="day_in_month" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Day in year" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Day in year" uniqueMembers="false" column="day_in_year" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Day name" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Day name" uniqueMembers="false" column="day_name" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Is first day in month" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Is first day in month" uniqueMembers="false" column="is_first_day_in_month" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Is first day in week" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Is first day in week" uniqueMembers="false" column="is_first_day_in_week" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Is last day in month" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Is last day in month" uniqueMembers="false" column="is_last_day_in_month" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Is last day in week" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Is last day in week" uniqueMembers="false" column="is_last_day_in_week" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Month abbreviation" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Month abbreviation" uniqueMembers="false" column="month_abbreviation" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Month name" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Month name" uniqueMembers="false" column="month_name" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Month number" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Month number" uniqueMembers="false" column="month_number" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Quarter name" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Quarter name" uniqueMembers="false" column="quarter_name" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Quarter number" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Quarter number" uniqueMembers="false" column="quarter_number" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Week in month" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Week in month" uniqueMembers="false" column="week_in_month" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Week in year" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Week in year" uniqueMembers="false" column="week_in_year" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Year month abbreviation" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Year month abbreviation" uniqueMembers="false" column="year_month_abbreviation" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Year month number" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Year month number" uniqueMembers="false" column="year_month_number" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Year quarter" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Year quarter" uniqueMembers="false" column="year_quarter" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Year2" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Year2" uniqueMembers="false" column="year2" type="String">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Year4" hasAll="true" primaryKey="date_key">
+      <Table name="dim_date" schema="public"/>
+      <Level name="Year4" uniqueMembers="false" column="year4" type="String">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="CuboStoreDW">
+    <Table name="fct_sales" schema="public"/>
+    <DimensionUsage name="Dim client" source="Dim client" foreignKey="clientsk"/>
+    <DimensionUsage name="Dim date" source="Dim date" foreignKey="salesdatesk"/>
+    <Measure name="Salesquantity" column="salesquantity" aggregator="sum"/>
+    <Measure name="Salestotalprice" column="salestotalprice" aggregator="sum"/>
+  </Cube>
+</Schema>
