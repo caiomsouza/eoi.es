@@ -1,5 +1,10 @@
 # EOI - Lab Pentaho - Bases de Datos Analíticas
 
+# Project Files
+Download the files using the link below:<BR>
+https://github.com/caiomsouza/eoi.es/releases/download/eoi.es-v20170906/eoi.es-v20170906.zip
+
+
 # Videos 
 
 ### Install Pentaho BA Server 7.1 EE (Enterprise Edition) on Windows
