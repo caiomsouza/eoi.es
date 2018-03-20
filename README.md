@@ -1,7 +1,7 @@
 # eoi.es
 EOI.es
 
-[![Alt text](https://img.youtube.com/vi/oIsX-jgQi0M&t=1s/0.jpg)](https://www.youtube.com/watch?v=oIsX-jgQi0M&t=1s)
+[![Alt text](aaaa](https://www.youtube.com/watch?v=oIsX-jgQi0M&t=1s)
 
 
 
